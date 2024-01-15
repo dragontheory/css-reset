@@ -102,6 +102,20 @@ textarea:not([rows]) {min-height: 10em;}
   }
 }
 
+/* https://frontendmasters.com/blog/date-based-styles-with-has/*/
+body:has([datetime|="2017"] )  {
+  /* Style page based on this year. */
+}
+
 .nav-link[aria-current="page"] {
   background-color: var(--bg-nav-active);
+}
+
+/* If element width attr is present display "value"; otherwise display "null" */
+div:not([style*="width"])::after {
+  content: 'width: null;';
+}
+
+div[style*="width"]::after {
+  content: attr(style);
 }
