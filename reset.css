@@ -3,31 +3,35 @@
    A simple reset (opionated)
    https://codepen.io/kevinpowell/pen/abMdOpp?editors=1100
 */
-/* makes sizing simpler */
+/* Makes sizing simpler */
 *,
 *::before,
-*::after {
-  box-sizing: border-box;
-}
+*::after {box-sizing: border-box;}
 
-/* remove default spacing */
-/* force styling of type through styling, rather than elements */
+/* Remove default spacing */
+/* Force styling of type through styling, rather than elements */
 * {
   margin: 0;
   padding: 0;
   font: inherit;
 }
 
-/* dark mode user-agent-styles */
-/* improves punctuation in supported browsers */
+/* Dark mode user-agent-styles */
+/* Improves punctuation in supported browsers */
 html {
   color-scheme: dark light;
   hanging-punctuation: first last;
+
+  /* Prevent font size inflation (iPhones) */
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
 }
 
-/* min body height */
+/* Min body height */
 body {
   min-height: 100svh;
+  line-height: 1.5;
 }
 
 /* responsive images/videos */
@@ -40,74 +44,18 @@ video {
 }
 
 /* Improved heading in supported browsers */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  text-wrap: balance;
-}
+h1,h2,h3,h4,h5,h6 {text-wrap: balance;}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+/* Sure Safari doesn’t wipe out the correct accessible role */
+ul[role='list'],
+ol[role='list'] {list-style: none;}
 
 /* improve readability with max-width on paragraphs and lists */
 /* prevent orphans in supported browsers */
-p,
-li {
+p, li {
   max-width: var(--p-max-width, 65ch);
   text-wrap: pretty;
-}
-
-
-
-
-
-/* https://piccalil.li/blog/a-more-modern-css-reset/
-   A (more) Modern CSS Reset - 2023.09.18
-   https://github.com/dragontheory/css-reset/wiki
-*/
-
-/* Box sizing rules */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-/* Prevent font size inflation */
-html {
-  -moz-text-size-adjust: none;
-  -webkit-text-size-adjust: none;
-  text-size-adjust: none;
-}
-
-/* Remove default margin in favour of better control in authored CSS */
-body, h1, h2, h3, h4, p,
-figure, blockquote, dl, dd {
-  margin-block-end: 0;
-}
-
-/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
-ul[role='list'],
-ol[role='list'] {
-  list-style: none;
-}
-
-/* Set core body defaults */
-body {
-  min-height: 100vh;
-  line-height: 1.5;
-}
-
-/* Set shorter line heights on headings and interactive elements */
-h1, h2, h3, h4,
-button, input, label {
-  line-height: 1.1;
-}
-
-/* Balance text wrapping on headings */
-h1, h2,
-h3, h4 {
-  text-wrap: balance;
 }
 
 /* A elements that don't have a class get default styles */
@@ -116,25 +64,16 @@ a:not([class]) {
   color: currentColor;
 }
 
-/* Make images easier to work with */
-img,
-picture {
-  max-width: 100%;
-  display: block;
-}
-
 /* Inherit fonts for inputs and buttons */
-input, button,
-textarea, select {
-  font: inherit;
-}
+input, button, textarea, select {font: inherit;}
 
 /* Make sure textareas without a rows attribute are not tiny */
-textarea:not([rows]) {
-  min-height: 10em;
-}
+textarea:not([rows]) {min-height: 10em;}
 
 /* Anything that has been anchored to should have extra scroll margin */
-:target {
-  scroll-margin-block: 5ex;
-}
+:target {scroll-margin-block: 5ex;}
+
+
+[role="region"][aria-labelledby][tabindex] {overflow: auto;}
+
+[role="region"][aria-labelledby][tabindex]:focus {outline: .1em solid rgba(0,0,0,.1);}
