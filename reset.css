@@ -101,3 +101,7 @@ textarea:not([rows]) {min-height: 10em;}
     scroll-behavior: auto !important;
   }
 }
+
+.nav-link[aria-current="page"] {
+  background-color: var(--bg-nav-active);
+}
