@@ -18,33 +18,39 @@
 
 /* Dark mode user-agent-styles */
 /* Improves punctuation in supported browsers */
+/* Prevent font size inflation (iPhones) */
 html {
   color-scheme: dark light;
   hanging-punctuation: first last;
-
-  /* Prevent font size inflation (iPhones) */
   -moz-text-size-adjust: none;
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
 }
 
 /* Min body height */
+/* Add accessible line-height */
+/* Improve text rendering */
 body {
   min-height: 100svh;
-  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* responsive images/videos */
-img,
-picture,
-svg,
-video {
+/* https://www.joshwcomeau.com/css/custom-css-reset/ */
+* {
+  line-height: calc(1em + 0.5rem);
+}
+
+/* Responsive images/videos */
+img, picture, svg, video, canvas {
   display: block;
   max-width: 100%;
 }
 
 /* Improved heading in supported browsers */
-h1,h2,h3,h4,h5,h6 {text-wrap: balance;}
+h1, h2, h3, h4, h5, h6 {
+   overflow-wrap: break-word;
+   text-wrap: balance;
+}
 
 /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
 /* Sure Safari doesn’t wipe out the correct accessible role */
@@ -55,7 +61,9 @@ ol[role='list'] {list-style: none;}
 /* prevent orphans in supported browsers */
 p, li {
   max-width: var(--p-max-width, 65ch);
+  overflow-wrap: break-word;
   text-wrap: pretty;
+  /* hyphens: auto; */
 }
 
 /* A elements that don't have a class get default styles */
@@ -77,3 +85,19 @@ textarea:not([rows]) {min-height: 10em;}
 [role="region"][aria-labelledby][tabindex] {overflow: auto;}
 
 [role="region"][aria-labelledby][tabindex]:focus {outline: .1em solid rgba(0,0,0,.1);}
+
+
+/* Create a root stacking context */
+#root, #__next {isolation: isolate;}
+
+/* Remove decorative motion for users who don’t want them */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
